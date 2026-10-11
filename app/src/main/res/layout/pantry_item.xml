@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Layout for one pantry item in the pantry list.
+     A separate copy of the layout is displayed for each ingredient-->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <!-- To display the name of the pantry ingredient -->
+    <TextView
+        android:id="@+id/itemName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tomatoes"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- To display the quantity & the unit size of the ingredients -->
+    <TextView
+        android:id="@+id/itemQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quantity: 5 items"
+        android:textSize="16sp" />
+
+    <!-- Displays the ingredient's expiry date -->
+    <TextView
+        android:id="@+id/itemExpiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Expiry: 15/10/2026"
+        android:textSize="14sp" />
+
+</LinearLayout>
