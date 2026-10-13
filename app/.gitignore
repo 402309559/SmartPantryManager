@@ -1,1 +1,21 @@
-/build
+# Gradle cache & generated build output
+.gradle/
+**/build
+
+# Local Andriod SDK Configs
+/local.properties
+
+# Andriod Studio local settings
+.idea/
+*.iml
+
+macOS files
+.DS_Store
+**/.DS_Store
+
+# Andriod build output
+/captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab

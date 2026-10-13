@@ -3,6 +3,7 @@ package com.example.smartpantrymanager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,16 +15,21 @@ import java.util.List;
 displays its details in pantry_item.xml */
 
 public class PantryAdapter
-        extends
-RecyclerView.Adapter<PantryAdapter.PantryViewHolder> {
+        extends RecyclerView.Adapter<PantryAdapter.PantryViewHolder> {
+
+    public interface OnItemActionListener {
+        void onEdit(PantryItem item);
+        void onDelete(PantryItem item);
+    }
 
     //This will hold the pantry ingredients being displayed.
     private final List<PantryItem> pantryItems;
-
+    private final OnItemActionListener listener;
     /*The constructor receives pantry items from the Activity.
      pantryItems the ingredients to display*/
-    public PantryAdapter(List<PantryItem> pantryItems) {
+    public PantryAdapter(List<PantryItem> pantryItems, OnItemActionListener listener) {
         this.pantryItems = pantryItems;
+        this.listener = listener;
     }
 
     /* Creates a new row by loading the pantry_item.xml layout.
@@ -68,6 +74,18 @@ item.getUnit());
             holder.itemExpiry.setVisibility(View.VISIBLE);
             holder.itemExpiry.setText("Expiry: " + expiryDate);
         }
+
+        holder.editButton.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onEdit(item);
+            }
+        });
+
+        holder.deleteButton.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onDelete(item);
+            }
+        });
     }
 
     /* Returns the number of items in the ingredient list,
@@ -87,14 +105,17 @@ item.getUnit());
         TextView itemName;
         TextView itemQuantity;
         TextView itemExpiry;
+        Button editButton;
+        Button deleteButton;
         PantryViewHolder(@NonNull View itemView) {
             super(itemView);
 
             // Connect the Java variables to the XML TextViews
             itemName = itemView.findViewById(R.id.itemName);
-            itemQuantity=
-    itemView.findViewById(R.id.itemQuantity);
+            itemQuantity= itemView.findViewById(R.id.itemQuantity);
             itemExpiry = itemView.findViewById(R.id.itemExpiry);
+            editButton = itemView.findViewById(R.id.editButton);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
         }
     }
 }
