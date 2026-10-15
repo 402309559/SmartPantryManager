@@ -20,7 +20,7 @@ public class RecipeIngredient {
         return name;
     }
 
-    public double getRequiredQuantity() {
+    public Double getRequiredQuantity() {
         return requiredQuantity;
     }
 

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Manifest configuration for the application. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -11,22 +13,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartPantryManager">
+
+        <!-- Main welcome screen displayed when the application launches. -->
         <activity
-            android:name=".PantryListActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
 
+            <!-- Identifies MainActivity as the application's launch activity. -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <!-- Keep MainActivity available for use later-->
+
+        <!-- Pantry list screen, available for navigation from the welcome screen. -->
         <activity
-            android:name=".MainActivity"
+            android:name=".PantryListActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
     </application>
 
 </manifest>

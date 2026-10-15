@@ -1,19 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!-- Main welcome screen for the Smart Pantry Manager application. -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F3EA"
+    android:padding="24dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Central card containing the application's welcome message. -->
+    <LinearLayout
+        android:id="@+id/welcomeCard"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#315D40"
+        android:padding="28dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Decorative leaf symbol representing fresh ingredients. -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🌿"
+            android:textSize="52sp"
+            android:contentDescription="Leaf symbol" />
+
+        <!-- Main application title. -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Smart Pantry"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <!-- Secondary title identifying the application. -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="MANAGER"
+            android:textColor="#DCE8D9"
+            android:textSize="14sp"
+            android:letterSpacing="0.2"
+            android:gravity="center" />
+
+        <!-- Decorative divider separating the title from the description. -->
+        <View
+            android:layout_width="56dp"
+            android:layout_height="3dp"
+            android:layout_marginTop="24dp"
+            android:background="#DCE8D9" />
+
+        <!-- Brief description highlighting the application's purpose. -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="A little more organised.&#10;A little less food waste."
+            android:textColor="#F5F3EA"
+            android:textSize="17sp"
+            android:lineSpacingExtra="6dp"
+            android:gravity="center" />
+
+        <!-- Button intended to take the user to the main application screen. -->
+        <Button
+            android:id="@+id/getStartedButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:text="Get Started"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#315D40"
+            android:backgroundTint="#F5F3EA" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

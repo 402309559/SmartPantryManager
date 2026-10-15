@@ -33,6 +33,10 @@ public class PantryListActivity extends AppCompatActivity {
         addButton = findViewById(R.id.addButton);
 
         databaseHelper = new DatabaseHelper(this);
+
+        // Ensure the initial recipes exist.
+        databaseHelper.seedRecipesIfNeeded();
+
         pantryItems = databaseHelper.getAllPantryItems();
 
         pantryAdapter = new PantryAdapter(pantryItems, new PantryAdapter.OnItemActionListener() {
@@ -125,39 +129,39 @@ public class PantryListActivity extends AppCompatActivity {
         dialog.setOnShowListener(ignore ->
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                         .setOnClickListener(v -> {
-                            String name = nameInput.getText()
-                                    .toString().trim();
-                            String quantityText = quantityInput.getText()
-                                    .toString().trim();
-                            String unit = unitInput.getText()
-                                    .toString().trim();
-                            String expiry = expiryInput.getText()
-                                    .toString().trim();
+                                    String name = nameInput.getText()
+                                            .toString().trim();
+                                    String quantityText = quantityInput.getText()
+                                            .toString().trim();
+                                    String unit = unitInput.getText()
+                                            .toString().trim();
+                                    String expiry = expiryInput.getText()
+                                            .toString().trim();
 
-                            if (name.isEmpty()
-                                    || quantityText.isEmpty()
-                                    || unit.isEmpty()) {
-                                Toast.makeText(this, "Enter a name, quantity & unit.", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
+                                    if (name.isEmpty()
+                                            || quantityText.isEmpty()
+                                            || unit.isEmpty()) {
+                                        Toast.makeText(this, "Enter a name, quantity & unit.", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
 
-                            double quantity;
-                            try {
-                                quantity = Double.parseDouble(quantityText);
-                            } catch (NumberFormatException e) {
-                                Toast.makeText(this, "Enter a valid quantity.",
-                                        Toast.LENGTH_SHORT).show();
-                                return;
-                            }
+                                    double quantity;
+                                    try {
+                                        quantity = Double.parseDouble(quantityText);
+                                    } catch (NumberFormatException e) {
+                                        Toast.makeText(this, "Enter a valid quantity.",
+                                                Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
 
-                            if (!Double.isFinite(quantity)
-                                    || quantity <= 0) {
-                                Toast.makeText(this, "Quantity must be greater than zero.", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
+                                    if (!Double.isFinite(quantity)
+                                            || quantity <= 0) {
+                                        Toast.makeText(this, "Quantity must be greater than zero.", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
 
-                            String expiryDate = expiry.isEmpty()
-                                    ? null : expiry;
+                                    String expiryDate = expiry.isEmpty()
+                                            ? null : expiry;
 
                                     long result;
 
@@ -207,8 +211,8 @@ public class PantryListActivity extends AppCompatActivity {
                                                 Toast.LENGTH_SHORT
                                         ).show();
                                     }
-        }
-        ));
+                                }
+                        ));
 
         dialog.show();
     }
@@ -245,6 +249,7 @@ public class PantryListActivity extends AppCompatActivity {
                 })
                 .show();
     }
+
     private void refreshPantryItems() {
         pantryItems.clear();
         pantryItems.addAll(databaseHelper.getAllPantryItems());
